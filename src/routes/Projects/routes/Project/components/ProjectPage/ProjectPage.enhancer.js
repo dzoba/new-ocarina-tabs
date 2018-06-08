@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { firestoreConnect, getVal } from 'react-redux-firebase'
 import { spinnerWhileLoading } from 'utils/components'
 import { UserIsAuthenticated } from 'utils/router'
+import { reduxForm } from 'redux-form'
+import { withHandlers } from 'recompose'
 
 export default compose(
   // redirect to /login if user is not logged in
@@ -19,6 +21,28 @@ export default compose(
       where: ['createdBy', '==', uid]
     }
   ]),
+  withHandlers({
+    updateTab: props => form => {
+      const { firestore, uid, showError, showSuccess, toggleDialog } = props
+      const projectId = window.location.href.split('/')[4]; // not good TODO: fix
+      if (!uid) {
+        return showError('You must be logged in to create a project')
+      }
+      return firestore.collection("projects").doc(projectId)
+        .update({
+          tabs: form.tabs
+        })
+        .then(() => {
+          // showSuccess('Project added successfully')
+          console.log('success')
+        })
+        .catch(err => {
+          console.error('Error:', err) // eslint-disable-line no-console
+          // showError(err.message || 'Could not update tab')
+          return Promise.reject(err)
+        })
+    }
+  }),
   spinnerWhileLoading(['firestore']),
   // Map projects from state to props
   connect(({ firestore: { data } }, { params }) => ({
