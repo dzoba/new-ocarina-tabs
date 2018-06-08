@@ -1,0 +1,41 @@
+{
+  "projects": {
+    "default": "new-ocarina-tabs",
+    "master": "new-ocarina-tabs",
+    "prod": "new-ocarina-tabs"
+  },
+  "ci": {
+    "createConfig": {
+      "master": {
+        "env": "production",
+        "firebase": {
+          "apiKey": "AIzaSyDzSJ31nbCVj8w1EY6PxQ4SFPUbzGr7N60",
+          "authDomain": "new-ocarina-tabs.firebaseapp.com",
+          "databaseURL": "https://new-ocarina-tabs.firebaseio.com",
+          "projectId": "new-ocarina-tabs",
+          "storageBucket": "new-ocarina-tabs.appspot.com"
+        },
+        "reduxFirebase": {
+          "userProfile": "users",
+          "enableLogging": false,
+          "updateProfileOnLogin": false
+        }
+      },
+      "prod": {
+        "env": "production",
+        "firebase": {
+          "apiKey": "AIzaSyDzSJ31nbCVj8w1EY6PxQ4SFPUbzGr7N60",
+          "authDomain": "new-ocarina-tabs.firebaseapp.com",
+          "databaseURL": "https://new-ocarina-tabs.firebaseio.com",
+          "projectId": "new-ocarina-tabs",
+          "storageBucket": "new-ocarina-tabs.appspot.com"
+        },
+        "reduxFirebase": {
+          "userProfile": "users",
+          "enableLogging": false,
+          "updateProfileOnLogin": false
+        }
+      }
+    }
+  }
+}
